@@ -1,0 +1,163 @@
+/* ================================= 
+  Base Styles
+==================================== */
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	line-height: 1.6;
+	background-color: #ffffff;
+	margin: 0;
+	padding: 0;
+}
+
+p {
+	font-size: .95em;
+	margin-bottom: 1.5em;
+}
+
+a {
+	text-decoration: none;
+}
+
+/* ================================= 
+  Base Layout Styles
+==================================== */
+
+/* ---- Navigation ---- */
+
+.name {
+	font-family: 'Castellar', sans-serif;
+	color: #ff5151;
+	font-size: 2em;
+	font-weight: lighter;
+	text-transform: uppercase;
+}
+
+.name,
+.main-nav li {
+	text-align: center;
+	/*margin-top: 6px;*/
+	margin-bottom: 6px;
+	padding: 10px 15px;
+}
+
+.main-nav li{
+	padding-top: 30px;
+}
+
+.main-nav a {
+	font-size: .95em;
+	color: #000000;
+	text-decoration: none;
+}
+
+.main-nav a:hover {
+}
+
+.name a,
+.main-nav a {
+	display: block;
+}
+
+/* ---- Layout Containers ---- */
+
+.container {
+	padding-left: 1em;
+	padding-right: 1em;
+  	display: block;
+}
+
+.main-header {
+	padding-top: 1.5em;
+	padding-bottom: 1.5em;
+	background-color: #ffffff;
+	margin-bottom: 30px;
+}
+
+.main-footer {
+	text-align: center;
+	//padding: 2em 0;
+	background-color: #ffffff;
+}
+.main-footer span{
+	padding: 5px 10px;
+}
+.main-footer a, span{
+	text-decoration: none !important;
+}
+#profile {
+	text-align: center;
+}
+#profile img {
+	border-radius: 50%;
+	width: 100px;
+	height: 100px;
+}
+
+/* ================================= 
+  Media Queries
+==================================== */
+
+@media (min-width: 769px) {
+
+	.wrap {
+		min-height: calc(100vh - 89px);
+	}
+
+	.container {
+		width: 80%;
+		max-width: 1150px;
+		margin: 0 auto;
+		display: block;
+	}
+	
+	.name,
+	.main-nav,
+	.main-nav li {
+		display: inline-block;
+	}
+
+	.name {
+	}
+
+	.main-nav li {
+		margin-right: 12px;
+	}
+
+	.main-nav{
+		float: right;
+	}
+	/*
+	.main-nav li {
+		margin-top: 0px;
+	}
+	*/
+	.main-nav a {
+		font-size: 1.5em;
+	}
+
+	#profile img{
+		width: 200px;
+		height: 200px;
+	}
+
+	.tblock {
+		font-size: 2.0em
+	}
+
+	h2 {
+		font-size: 3em
+	}
+
+	h3 {
+		font-size: 2.5em
+	}
+
+}
+
+
+
+

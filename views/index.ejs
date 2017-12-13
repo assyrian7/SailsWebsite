@@ -1,0 +1,167 @@
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="keywords" content="paul,badalian,website">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> 
+	<link href="styles/normalize.css" rel="stylesheet" type="text/css">
+	<link href="styles/style.css" rel="stylesheet" type="text/css">
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+-->
+	<title>Paul's Website</title>
+	<link rel="stylesheet" href="/styles/style.css">
+	<div id="popup" class="overlay" style="display: none;">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">x</a>
+			<div class="col-sm-10 col-sm-offset-1">
+				<div class="form-group" style="padding-top: 50px;">
+					<input class="form-control" name="email" type="text" placeholder="Your Email"></input>
+				</div>
+				<div class="form-group">
+					<input class="form-control" name="subject" type="text" placeholder="Subject"></input>
+				</div>
+				<div class="form-group">
+					<textarea class="form-control" rows="4" name="body" placeholder="Body"></textarea>
+				</div>
+				<button class="btn btn-primary" onClick="sendEmail()">Send</button>
+			</div>
+		
+	</div>
+	<div id="home" class="wrap" onClick="fadeOut()">
+		<header class="main-header">
+			<div class="container">
+				<ul class="main-nav">
+					<li><a href="/">Home</a></li>
+					<li><a href="/about">About</a></li>
+				</ul>
+			</div>
+		</header>
+		<div class="container">
+			<!--<hr style="color: #ffffff;" /> -->
+		</div>
+		<div class="main-container">
+			<h1>Develop for the future</h1>
+			<a href="javascript:void(0)" onclick="openNav()">Contact Me</a>
+			<a href="downloads/resume.docx" onclick="cancelFade()" download>Resume</a>
+		</div>
+	</div>
+	<video playsinline autoplay muted loop id="bgvid">
+		<source src="videos/movie.mp4" type="video/mp4"> 
+	</video>
+	<script>
+
+		var a = 0;
+
+		function cancelFade(){
+			a = 2;
+		}
+
+		function openNav() {
+			a = 2;
+			var inputs = document.getElementsByClassName("form-control");
+			for(i = 0; i < inputs.length; i+=1){
+				inputs[i].value = "";
+			}
+			var popup = document.getElementById("popup");
+			popup.style.display = "block"
+			/*popup.style.backgroundColor = "rgba(0, 0, 0)";
+			popup.style.trasition = "0.3s";
+		`*/
+		}
+	
+		function closeNav() {
+			var popup = document.getElementById("popup");
+			//popup.style.transition = "0.3s";
+			//popup.style.backgroundColor = "rgba(0, 0, 0, 0.0)";
+			popup.style.display = "none";
+			a = 0;
+		}
+		function fadeOut(){
+			if(a == 1){
+				fadeIn();
+				a = 0;
+				console.log(a);
+			}
+			else if(a == 2){
+				
+			}
+			else{
+				var home = document.getElementById("home");
+				home.style.transition = "0.5s";
+				home.style.backgroundColor = "rgba(0, 0, 0, 0.0)";
+				var anchors = home.getElementsByTagName("A");
+				home.getElementsByTagName("H1")[0].style.color = "rgba(1, 1, 1, 0.0)";
+				for(i = 0; i < anchors.length; i++){
+					anchors[i].style.color = "rgba(1, 1, 1, 0.0)";
+					anchors[i].style.borderColor = "rgba(1, 1, 1, 0.0)";
+					anchors[i].style.cursor = "default";
+					$(anchors[i]).hover(function(){
+						$(this).css({"color": "rgba(1, 1, 1, 0.0)", "border-color": "rgba(1, 1, 1, 0.0)"});
+					}, function(){
+						$(this).css({"color": "rgba(1, 1, 1, 0.0)", "border-color": "rgba(1, 1, 1, 0.0)"});
+					});
+				}
+				a = 1;
+				console.log(a);
+			}
+		}
+		function fadeIn(){
+			var home = document.getElementById("home");
+			home.style.transition = "0.3s";
+			home.style.backgroundColor = "rgba(0, 0, 0, 0.75)";
+			var anchors = home.getElementsByTagName("A");
+			home.getElementsByTagName("H1")[0].style.color = "#FFFFFF";
+			for(i = 0; i < anchors.length; i++){
+				anchors[i].style.color = "#FFFFFF";
+				anchors[i].style.borderColor = "#FFFFFF";
+				//$(anchors[i]).css({"color": "#FFFFFF", "border-color": "#FFFFFF"})
+				$(anchors[i]).hover(function(){
+					$(this).css({"color": "#808080", "border-color": "#808080"});
+				}, function(){
+					$(this).css({"color": "#FFFFFF", "border-color": "#FFFFFF"});
+				});
+				anchors[i].hover = function(){
+					anchors[i].style.borderBottom = "1px solid #808080";
+					anchors[i].style.color = "#808080";
+					anchors[i].style.transition = "0.3s";
+				}
+				anchors[i].style.cursor = "auto";
+			}
+		}
+		function sendEmail(){
+			var inputs = document.getElementsByClassName("form-control");
+			var email = inputs[0].value;
+			var subject = inputs[1].value;
+			var body = inputs[2].value;
+			$.ajax({
+				type: 'POST',
+				url:  'http://www.paulbadalian.com/email?email=' + email + '&subject=' + subject + '&body=' + body,
+				beforeSend: function(){
+					closeNav();
+					console.log('Sending email...');
+				},
+				success: function(data){
+					console.log(data);
+				}
+			});  
+		}
+
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-92372015-1', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+<!--
+</body>
+</html>
+-->
